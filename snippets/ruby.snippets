@@ -502,3 +502,17 @@ snippet tas
 	task :${2:task_name => [:dependent, :tasks]} do
 		${3}
 	end
+snippet it
+	it {${1:code}}
+snippet itb
+	it "${1:description}" do
+		${2}
+	end
+snippet describe
+	describe ${1:subject}
+		${2}
+	end
+snippet context
+	context "${1:when something}" do
+		${2}
+	end
