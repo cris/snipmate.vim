@@ -16,9 +16,20 @@ snippet beg
 		${3}
 	rescue ${1:Exception} => ${2:e}
 	end
-
+snippet f
+	false
+snippet t
+	true
+snippet n
+	nil
 snippet req
 	require "${1}"${2}
+snippet pu
+	public
+snippet po
+	protected
+snippet pr
+	private
 snippet #
 	# =>
 snippet end
@@ -103,6 +114,10 @@ snippet cla class << self .. end
 	class << ${1:self}
 		${2}
 	end
+snippet cls
+	class << self
+		${1}
+	end
 # class .. < DelegateClass .. initialize .. end
 snippet cla-
 	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < DelegateClass(${2:ParentClass})
@@ -114,30 +129,9 @@ snippet cla-
 
 
 	end
-snippet mod module .. end
+snippet mod
 	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
 		${2}
-	end
-snippet mod module .. module_function .. end
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-		module_function
-
-		${2}
-	end
-snippet mod module .. ClassMethods .. end
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-		module ClassMethods
-			${2}
-		end
-
-		module InstanceMethods
-
-		end
-
-		def self.included(receiver)
-			receiver.extend         ClassMethods
-			receiver.send :include, InstanceMethods
-		end
 	end
 # attr_reader
 snippet r
@@ -375,7 +369,11 @@ snippet seld
 snippet lam
 	lambda { |${1:args}| ${2} }
 snippet do
-	do |${1:variable}|
+	do
+		${1}
+	end
+snippet dov
+	do |${1:v}|
 		${2}
 	end
 snippet :
@@ -503,13 +501,21 @@ snippet tas
 		${3}
 	end
 snippet it
-	it {${1:code}}
+	it {${1:should }${2}}
 snippet itb
 	it "${1:description}" do
 		${2}
 	end
+snippet des
+	describe ${1:subject} do
+		${2}
+	end
 snippet describe
-	describe ${1:subject}
+	describe ${1:subject} do
+		${2}
+	end
+snippet con
+	context "${1:when something}" do
 		${2}
 	end
 snippet context
